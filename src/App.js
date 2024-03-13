@@ -1,37 +1,49 @@
 import logo from './logo.svg';
 import './App.css';  //앱 디자인
-function Header() { //사용자 정의 태그를 만들때는 첫글자 대문자로 upper 이것이 바로 !!컴포넌트!!
+function Header(props) { //사용자 정의 태그를 만들때는 첫글자 대문자로 upper 이것이 바로 !!컴포넌트!!
+  console.log('props: ', props, props.title);
   return <header>
-    <h1><a href="/">WEB</a></h1>
+    <h1><a href="/">{props.title}</a></h1>
   </header>
 
 }
 
-function Article() {
+function Article(props) {
   return <article>
-    <h2>Welcome</h2>
-    Hello, WEB
+    <h2>{props.title}</h2>
+    {props.body}
   </article>
 }
 
-function Nav() {
+function Nav(props) {
+  const lis = [];
+  for(let i=0; i<props.topics.length; i++) {
+    let t = props.topics[i];
+    console.log("topics 동적 html 그리기",t);
+    lis.push(<li key={t.id}><a href={'/read/'+t.id}>{t.title}</a></li>)
+  }
+
   return <nav>
     <ol>
-      <li><a href="/read/1">html</a></li>
-      <li><a href="/read/2">css</a></li>
-      <li><a href="/read/3">js</a></li>
+      {lis}
     </ol>
   </nav>
 }
 
 function App() {
+  const topics = [ //동적으로 그려줄 데이터
+    { id: 1, title: 'html', body: 'html is ...' }
+    , { id: 2, title: 'css', body: 'css is ...' }
+    , { id: 3, title: 'javascript', body: 'javascript is ...' }
+  ]
+
   return (
     <div>
-      <Header></Header>   {/* This is Component!! */}
-      <Header></Header>   {/* This is Component!! */}
-      <Nav></Nav>         {/* This is Component!! */}
-      <Article></Article> {/* This is Component!! */}
+      <Header title="WEB"></Header>   {/* This is Component!! */}
+      <Nav topics={topics}></Nav>                       {/* This is Component!! */}
+      <Article title="Welcome" body="Hello, WEB"></Article>               {/* This is Component!! */}
     </div>
+
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
