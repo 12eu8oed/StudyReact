@@ -76,3 +76,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## props
 - **App()안에 사용자 정의 태그에 있는 요소들에 이름을 부여해놓은 것을**
 - **사용자 정의 태그 함수에 props인자로 받아서 인자들로 값을 지정할 수 있음**
+
+## State
+- **props과 함께 Compenet를 재실행해서 새로운 return을 만들어 내는 데이터다!**
+
+
